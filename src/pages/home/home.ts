@@ -265,6 +265,7 @@ export class HomePage {
             document.getElementById('btnmenu').style.display = 'none';
             document.getElementById('clientcount').style.display = 'none';
             document.getElementById('addprospek').style.display = 'block';
+            document.getElementById('onsearch').style.display = 'none';
           }
         }
       ]
@@ -311,6 +312,7 @@ export class HomePage {
                       document.getElementById('btnmenu').style.display = 'none';
                       document.getElementById('clientcount').style.display = 'none';
                       document.getElementById('updprospek').style.display = 'block';
+                      document.getElementById('onsearch').style.display = 'none';
                     })
                   })
                 })
@@ -348,6 +350,7 @@ export class HomePage {
                 document.getElementById('btnmenu').style.display = 'none';
                 document.getElementById('clientcount').style.display = 'none';
                 document.getElementById('tbhgrup').style.display = 'block';
+                document.getElementById('onsearch').style.display = 'none';
               })
             }
           },
@@ -366,6 +369,7 @@ export class HomePage {
                 document.getElementById('btnmenu').style.display = 'none';
                 document.getElementById('clientcount').style.display = 'none';
                 document.getElementById('delgrup').style.display = 'block';
+                document.getElementById('onsearch').style.display = 'none';
               })
             }
           }
@@ -391,6 +395,7 @@ export class HomePage {
                 document.getElementById('btnmenu').style.display = 'none';
                 document.getElementById('clientcount').style.display = 'none';
                 document.getElementById('addgrup').style.display = 'block';
+                document.getElementById('onsearch').style.display = 'none';
               })
             }
           }
@@ -403,6 +408,9 @@ export class HomePage {
     var query = "UPDATE ms_client SET is_delete=1 WHERE client_id=" + "'" + this.clientdetail['client_id'] + "'";
     this.dbProvider.executeQuery(query).then((res: any) => {
       this.doToastSuccess('Hapus client sukses')
+      document.getElementById('onsearch').style.display = 'none';
+      document.getElementById('btnmenu').style.display = 'block';
+      document.getElementById('clientcount').style.display = 'block';
       this.client = [];
       this.clients = [];
       this.clientgroup = [];
