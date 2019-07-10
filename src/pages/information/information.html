@@ -1,0 +1,47 @@
+<ion-header id="toolbar" style="transition: opacity 2s;-webkit-transition: width 2s;z-index:999;">
+  <ion-toolbar color="light">
+    <div style="float: right;">
+      <img src="assets/imgs/logo.png">
+    </div>
+    <ion-title style="height:60px;">
+      INFORMASI
+    </ion-title>
+  </ion-toolbar>
+  <ion-navbar color="primary">
+    <ion-buttons end id="btnmenu">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCloseInformation()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Tutup
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="scroll" style="background:#fff;">
+  <div padding style="font-size:15px;font-weight: bold;">DAFTAR MODUL YANG SUDAH TERPASANG</div>
+  <ion-row *ngFor="let modul of listmodul" padding>
+    <ion-col padding col-2 style="text-align: center;border:1px solid;border-color:#dedede;">
+      <div *ngIf="modul.appmod_id != 'GOAPPS'">
+        <i class={{modul.appmod_icon}}></i>
+      </div>
+      <div style="padding:0px;">
+        {{modul.appmod_name}}
+      </div>
+    </ion-col>
+    <ion-col padding col-10 style="text-align: left;border-bottom:1px solid;border-color:#dedede;">
+      <div>Versi {{modul.appmod_version}}</div>
+      <div>{{modul.appmod_desc}}</div>
+    </ion-col>
+  </ion-row>
+  <div padding style="font-size:15px;font-weight: bold;">DAFTAR PRODUK YANG SUDAH DIUNDUH</div>
+  <ion-row *ngFor="let produk of listproduk" padding>
+    <ion-col padding col-2 style="text-align: center;border:1px solid;border-color:#dedede;">
+      <div>
+        <i class="fab fa-product-hunt"></i>
+      </div>
+    </ion-col>
+    <ion-col padding col-10 style="text-align: left;border-bottom:1px solid;border-color:#dedede;">
+      <div>Versi {{produk.appmod_version}}</div>
+      <div>{{produk.appmod_desc}}</div>
+    </ion-col>
+  </ion-row>
+</ion-content>

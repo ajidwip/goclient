@@ -1,1 +1,25 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu side="left" [content]="mycontent">
+    <ion-content class="scroll">
+        <ion-list>
+            <ion-item no-lines
+                style="text-align:center;background:#1EC1FF;border-bottom:5px solid;border-color:#dedede;">
+                <!-- <ion-avatar>
+                    <img src="assets/imgs/people.jpg" style="width:100px;height:100px;margin:auto;" />
+                </ion-avatar> -->
+                <div style="color:#ffffff;margin-top:5px;margin-bottom:5px;">{{username}}</div>
+                <div style="color:#ffffff;margin-top:5px;margin-bottom:5px;">{{usercode}}</div>
+            </ion-item>
+            <ion-item (click)="doGoHome()">
+                <i class="fa fa-home"></i>&nbsp;&nbsp;Beranda
+            </ion-item>
+            <ion-item *ngFor="let menu of listmenu" (click)="doGoUrl(menu)">
+                <i class={{menu.appmod_icon}}></i>&nbsp;&nbsp;{{menu.appmod_name}}
+            </ion-item>
+            <ion-item (click)="doInformation()">
+                <i class="fa fa-info-circle"></i>&nbsp;&nbsp;Informasi
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

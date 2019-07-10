@@ -1,0 +1,355 @@
+<ion-header id="toolbardetail" >
+  <ion-navbar color="light">
+    <div style="float: right;">
+      <img src="assets/imgs/logo.png">
+    </div>
+    <ion-title style="height:60px;">
+      PROFIL LENGKAP
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="modal-content-items" (ionScroll)="onScroll($event)">
+  <div style="padding-top:80px;"></div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama</ion-label>
+          <ion-input disabled [(ngModel)]="clientname"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Tipe ID</ion-label>
+          <ion-input disabled [(ngModel)]="clienttypeid"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>No ID</ion-label>
+          <ion-input disabled [(ngModel)]="clientidno"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kota</ion-label>
+          <ion-input disabled [(ngModel)]="clientcity"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Negara</ion-label>
+          <ion-input disabled [(ngModel)]="clientcountry"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Jenis Kelamin</ion-label>
+          <ion-input disabled [(ngModel)]="clientgender"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kelas Pekerjaan</ion-label>
+          <ion-input disabled [(ngModel)]="clientclass"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama Perusahaan</ion-label>
+          <ion-input disabled [(ngModel)]="clientcompany"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Bidang Usaha</ion-label>
+          <ion-input disabled [(ngModel)]="clientbussines"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Jabatan</ion-label>
+          <ion-input disabled [(ngModel)]="clientposition"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Uraian Pekerjaan</ion-label>
+          <ion-input disabled [(ngModel)]="clientoccupation"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input disabled [(ngModel)]="clientemail"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor HP</ion-label>
+          <ion-input disabled [(ngModel)]="clientphoneno"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Status Pernikahan</ion-label>
+          <ion-input disabled [(ngModel)]="clientmarriage"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kewarganegaraan</ion-label>
+          <ion-input disabled [(ngModel)]="clientnationaly"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Pendidikan Formal Terakhir</ion-label>
+          <ion-input disabled [(ngModel)]="clienteducation"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Hobi Berisiko Tinggi</ion-label>
+          <ion-input disabled [(ngModel)]="clienthobby"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>NPWP (Nomor Pokok Wajib Pajak)</ion-label>
+          <ion-input disabled [(ngModel)]="clientnpwp"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Waktu Terakhir Pengubahan</ion-label>
+          <ion-input disabled [(ngModel)]="clientdateupdate"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">ALAMAT TEMPAT TINGGAL
+      SEKARANG</div>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label stacked>Alamat</ion-label>
+          <ion-input disabled [(ngModel)]="clientaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kota</ion-label>
+          <ion-input disabled [(ngModel)]="clientcityaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kode Pos</ion-label>
+          <ion-input disabled [(ngModel)]="clientpostcodeaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Negara</ion-label>
+          <ion-input disabled [(ngModel)]="clientcountryaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor Telepon</ion-label>
+          <ion-input disabled [(ngModel)]="clientphonenoaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor Fax</ion-label>
+          <ion-input disabled [(ngModel)]="clientfaxaddr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">ALAMAT SURAT MENYURAT
+      (berbeda dengan Alamat Tempat Tinggal Sekarang)</div>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <ion-label stacked>Alamat</ion-label>
+          <ion-input disabled [(ngModel)]="clientaddressmessage"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kota</ion-label>
+          <ion-input disabled [(ngModel)]="clientcitymessage"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kode Pos</ion-label>
+          <ion-input disabled [(ngModel)]="clientpostcodemessage"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Negara</ion-label>
+          <ion-input disabled [(ngModel)]="clientcountrymessage"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor Telepon</ion-label>
+          <ion-input disabled [(ngModel)]="clientphonenomessage"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor Fax</ion-label>
+          <ion-input disabled [(ngModel)]="clientfaxmessage"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">WAJIB PAJAK NEGARA ASING
+    </div>
+    <div padding>
+      <ion-row style="background: #1EC1FF;">
+        <ion-col col-4 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Negara</ion-col>
+        <ion-col col-3 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Tax Identification
+          Number(TIN)</ion-col>
+        <ion-col col-5 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Remark</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let foreigntax of clientforeigntax">
+        <ion-col col-4>{{foreigntax.code_desc1}}</ion-col>
+        <ion-col col-3>{{foreigntax.foreign_tax_tin}}</ion-col>
+        <ion-col col-5>{{foreigntax.foreign_tax_tin_remark}}</ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">SUMBER PENGHASILAN
+    </div>
+    <div padding>
+      <ion-row style="background: #1EC1FF;">
+        <ion-col col-7 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Sumber Penghasilan
+        </ion-col>
+        <ion-col col-5 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Keterangan</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let income of clientincome">
+        <ion-col col-7>{{income.code_desc1}}</ion-col>
+        <ion-col col-5>{{income.salary_remark}}</ion-col>
+      </ion-row>
+    </div>
+    <ion-item>
+      <ion-label stacked>Perkiraan Penghasilan Kotor per Tahun</ion-label>
+      <ion-input disabled [(ngModel)]="clientgrossinc"></ion-input>
+    </ion-item>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">TUJUAN MEMBELI ASURANSI
+    </div>
+    <div padding>
+      <ion-row style="background: #1EC1FF;">
+        <ion-col col-7 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Tujuan Membeli
+          Asuransi
+        </ion-col>
+        <ion-col col-5 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Keterangan</ion-col>
+      </ion-row>
+      <ion-row *ngFor="let purpose of clientpurpose">
+        <ion-col col-7>{{purpose.code_desc2}}</ion-col>
+        <ion-col col-5>{{purpose.purpose_remark}}</ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:black;color:#1EC1FF;text-align: left;">DATA REKENING PADA BANK
+    </div>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama Pemilik Rekening</ion-label>
+          <ion-input disabled [(ngModel)]="clientbankaccname"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Mata Uang Rekening</ion-label>
+          <ion-input disabled [(ngModel)]="clientcurr"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nomor Rekening</ion-label>
+          <ion-input disabled [(ngModel)]="clientbanknum"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Nama Bank</ion-label>
+          <ion-input disabled [(ngModel)]="clientbankname"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Cabang</ion-label>
+          <ion-input disabled [(ngModel)]="clientbankbranch"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label stacked>Kota</ion-label>
+          <ion-input disabled [(ngModel)]="clientbankcity"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid padding>
+    <div style="border-bottom:1px solid;border-color:#474747;color:#1EC1FF;text-align: left;">CATATAN
+    </div>
+    <ion-row>
+      <ion-col col-12>
+        <ion-item>
+          <p>{{clientnote}}</p>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,14 +1,924 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
+<ion-header id="toolbar" style="transition: opacity 2s;-webkit-transition: width 2s;z-index:999;">
+  <ion-toolbar color="light">
+    <button style="margin-right:15px;" ion-button menuToggle left>
+      <ion-icon style="font-size:25px;" name="md-menu"></ion-icon>
+    </button>
+    <div style="float: right;">
+      <img src="assets/imgs/logo.png">
+    </div>
+    <ion-title style="height:60px;">
+      PROSPEK
     </ion-title>
+  </ion-toolbar>
+  <ion-navbar color="primary">
+    <button id="clientcount" ion-button clear color="dark" style="font-size:12px;font-weight: bold;">
+      <ion-icon style="font-size:20px;" name="md-person">&nbsp;&nbsp;[{{client.length}}]</ion-icon>
+    </button>
+    <button id="tbhgrup" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Tambah Grup
+    </button>
+    <button id="delgrup" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Hapus Grup
+    </button>
+    <button id="addgrup" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Buat Grup
+    </button>
+    <button id="addprospek" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Buat Baru
+    </button>
+    <button id="updprospek" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Ubah Prospek
+    </button>
+    <button id="searchprospek" ion-button clear color="dark" style="font-size:12px;font-weight: bold;display:none;">
+      Cari Prospek
+    </button>
+
+    <ion-buttons end id="btnmenu">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doOpenSearchProspek()">
+        <ion-icon style="font-size:20px;" name="md-search"></ion-icon>
+        &nbsp;&nbsp;Cari
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doShowMenu()">
+        <ion-icon style="font-size:20px;" name="md-more"></ion-icon>
+        &nbsp;&nbsp;Menu
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btnact" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doAddGroup()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Simpan
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancel()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Batal
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btnsearch" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doSearchProspek()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Cari
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancelSearch()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Tutup
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="onsearch" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doClearSearch()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Hapus Pencarian
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doShowMenu()">
+        <ion-icon style="font-size:20px;" name="md-more"></ion-icon>
+        &nbsp;&nbsp;Menu
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btnaddact" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doGetMaxGroupID()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Simpan
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancelCreate()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Batal
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btndel" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doDelGroup()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Simpan
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancelDel()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Batal
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btnaddprospek" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCreateProspek()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Simpan
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancelAddProspek()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Batal
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end id="btnupdprospek" style="display:none;">
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doUpdateProspek()">
+        <ion-icon style="font-size:20px;" name="checkmark-circle"></ion-icon>
+        &nbsp;&nbsp;Simpan
+      </button>
+      <button ion-button clear color="dark" style="font-size:12px;font-weight: bold;" (click)="doCancelUpdProspek()">
+        <ion-icon style="font-size:20px;" name="close-circle"></ion-icon>
+        &nbsp;&nbsp;Batal
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content no-padding class="no-scroll" style="background:#fff;">
+  <ion-row style="height:100%;">
+    <ion-col col-6 style="border-right:1px solid;border-color:#dedede;">
+      <ion-content class="scroll">
+        <ion-list *ngFor="let group of clients" style="border-bottom:1px solid;border-color:#dedede;padding-top:10px;">
+          <li style="padding: 1em 0;
+          margin-left: .5em;
+          margin-top: .3em;
+          border-radius: 1em;
+          border: 0;
+          -webkit-border-radius: 1em;
+          width: 2em;
+          line-height: 0;
+          text-align: center;
+          text-shadow: none;
+          background-color: red;
+          color: white;
+          font-weight: normal;">{{group.key}}</li>
+          <ion-item style="padding-left:10px;" *ngFor="let client of group.clientdet" (click)="doGetProfil(client)">
+            <p *ngIf="client.client_name == clientname" style="color:red;">{{client.client_name}}</p>
+            <p *ngIf="client.client_name != clientname">{{client.client_name}}</p>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-col>
+    <ion-col col-6>
+      <ion-content class="scroll">
+        <ion-list style="padding:10px;">
+          <!--<div style="border-bottom:2px solid;border-color:red;color:#3388cc;text-align: left;">PROFIL</div>-->
+          <ion-item no-lines style="background:transparent;margin-bottom:-15px;padding:0px;">
+            <div style="font-size:15px;color:#3388cc;border-bottom:2px solid;border-color:red;">PROFIL</div>
+            <ion-icon name="md-list" item-end style="font-size:23px;color:#3388cc;" (click)="doMenuProfil()">
+            </ion-icon>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Nama</ion-label>
+            <ion-input disabled [(ngModel)]="clientname"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Jenis Kelamin</ion-label>
+            <ion-input disabled [(ngModel)]="clientgender"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Tanggal Lahir</ion-label>
+            <ion-input disabled [(ngModel)]="clientbirthdate"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Kelas Pekerjaan</ion-label>
+            <ion-input disabled [(ngModel)]="clientclass"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label stacked>Catatan</ion-label>
+            <ion-input disabled [(ngModel)]="clientnote"></ion-input>
+          </ion-item>
+          <!--<div>
+            <button ion-button clear style="float:right;" (click)="doDetailClient()">
+              <ion-icon name="arrow-dropright-circle" style="font-size:12px;"> Lihat Profil Lengkap</ion-icon>
+            </button>
+          </div>-->
+        </ion-list>
+
+        <ion-list style="padding:10px;">
+          <ion-item no-lines style="background:transparent;margin-bottom:-15px;padding:0px;">
+            <div style="font-size:15px;color:#3388cc;border-bottom:2px solid;border-color:red;">GRUP
+              [{{clientgroup.length}}]</div>
+            <ion-icon name="md-list" item-end style="font-size:23px;color:#3388cc;" (click)="doMenuGrup()">
+            </ion-icon>
+          </ion-item>
+          <ion-item style="padding-top:5px;" *ngFor="let group of clientgroup">
+            <p style="color:#3388cc;" (click)="doGetProfil(group)">{{group.client_name}}</p>
+            <button ion-button clear item-end (click)="doConfirmDeleteGroup(group)">
+              <ion-icon style="color:black;font-weight: bold;" name="remove"></ion-icon>
+            </button>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-col>
+  </ion-row>
 </ion-content>
+<div id="myModalItems" class="modal-items">
+  <div style="padding:10px;">
+    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;Silakan pilih nama Prospek yang ingin ditambahkan sebagai Grup
+  </div>
+  <ion-searchbar [(ngModel)]="search" (ionInput)="doSearch($event)" placeholder="Cari Prospek">
+  </ion-searchbar>
+  <ion-content class="modal-content-items">
+    <ion-grid style="padding:7px;">
+      <ion-row class="row-content">
+        <ion-col col-5 padding class="col-content" style="font-weight: bold;">Nama</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Tanggal Lahir</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Jenis Kelamin</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Memiliki Grup</ion-col>
+        <ion-col col-1 padding class="col-content">
+          <label class="container">
+            <input #checkboxall type="checkbox" name="listclientall[]" value="checkall" (click)="doCheckAll()">
+            <span class="checkmark"></span>
+          </label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let client of clientnogroup" class="row-content-list">
+        <ion-col col-5 padding class="col-content">{{client.client_name}}</ion-col>
+        <ion-col col-2 padding class="col-content">{{client.client_dob | date:'dd MMMM yyyy'}}</ion-col>
+        <ion-col *ngIf="client.client_gender == 'M'" col-2 padding class="col-content">Laki-Laki</ion-col>
+        <ion-col *ngIf="client.client_gender == 'F'" col-2 padding class="col-content">Perempuan</ion-col>
+        <ion-col col-2 padding class="col-content">Tidak</ion-col>
+        <ion-col col-1 padding class="col-content">
+          <label class="container">
+            <input #checkbox type="checkbox" name="listclient[]" value="{{client.client_id}}" (click)="doCheck(client)">
+            <span class="checkmark"></span>
+          </label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
+
+<div id="myModalItemsGroup" class="modal-items">
+  <div style="padding:10px;">
+    <i class="fa fa-info-circle"></i>&nbsp;&nbsp;Silakan pilih nama Prospek yang ingin dihapus dari Grup
+  </div>
+  <ion-searchbar [(ngModel)]="search" (ionInput)="doSearchDel($event)" placeholder="Cari Prospek">
+  </ion-searchbar>
+  <ion-content class="modal-content-items">
+    <ion-grid style="padding:7px;">
+      <ion-row class="row-content">
+        <ion-col col-5 padding class="col-content" style="font-weight: bold;">Nama</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Tanggal Lahir</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Jenis Kelamin</ion-col>
+        <ion-col col-2 padding class="col-content" style="font-weight: bold;">Memiliki Grup</ion-col>
+        <ion-col col-1 padding class="col-content">
+          <label class="container">
+            <input #checkboxall type="checkbox" name="listclientalldel[]" value="checkall" (click)="doCheckAllDel()">
+            <span class="checkmark"></span>
+          </label>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let client of clientongroup" class="row-content-list">
+        <ion-col col-5 padding class="col-content">{{client.client_name}}</ion-col>
+        <ion-col col-2 padding class="col-content">{{client.client_dob | date:'dd MMMM yyyy'}}</ion-col>
+        <ion-col *ngIf="client.client_gender == 'M'" col-2 padding class="col-content">Laki-Laki</ion-col>
+        <ion-col *ngIf="client.client_gender == 'F'" col-2 padding class="col-content">Perempuan</ion-col>
+        <ion-col col-2 padding class="col-content">YA</ion-col>
+        <ion-col col-1 padding class="col-content">
+          <label class="container">
+            <input #checkbox type="checkbox" name="listclientdel[]" value="{{client.client_id}}"
+              (click)="doCheckDel(client)">
+            <span class="checkmark"></span>
+          </label>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</div>
+
+<div id="myModalCreateProspek" class="modal-items" style="padding-top:0px;">
+  <ion-content class="modal-content-items" style="background: #fff;" (ionScroll)="onScroll($event)">
+    <div style="padding-top:130px;"></div>
+    <div>
+      Note :
+    </div>
+    <p style="font-weight: bold;font-size:12px;">Data yang wajib diisi ada Nama, Tanggal Lahir, Jenis Kelamin & Kelas
+      Pekerjaan (memiliki tanda bintang).<br>
+      Data selain disebut diatas berfungsi untuk mempermudah pengisian Aplikasi.
+    </p>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nama *
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="nama"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doOpenListTipeID()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Tipe ID
+      </ion-label>
+      <ion-input disabled [(ngModel)]="tipeid" placeholder="Pilih Tipe ID"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        No ID
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="noid"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doDatePicker()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Tanggal Lahir *
+      </ion-label>
+      <ion-input disabled type="text" [(ngModel)]="tgllahir" placeholder="Pilih Tanggal"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-calendar-alt" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kota Lahir
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="kota"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doOpenListNegara()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Negara
+      </ion-label>
+      <ion-input disabled [(ngModel)]="negara" placeholder="Pilih Negara"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowOptionJkel()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Jenis Kelamin *
+      </ion-label>
+      <ion-input disabled [(ngModel)]="jkel" placeholder="Pilih Jenis Kelamin"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowClass()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kelas Pekerjaan *
+      </ion-label>
+      <ion-input disabled [(ngModel)]="kelaspekerjaan" placeholder="Pilih Kelas Pekerjaan"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nama Perusahaan
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="namaperusahaan"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowBidangUsaha()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Bidang Usaha
+      </ion-label>
+      <ion-input disabled [(ngModel)]="bidangusaha"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-row style="padding:0px;">
+      <ion-col col-6 style="padding:0px;" (click)="doShowJabatan()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Jabatan
+          </ion-label>
+          <ion-input disabled [(ngModel)]="jabatan"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 style="padding:0px;" (click)="doShowPekerjaan()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Uraian Pekerjaan
+          </ion-label>
+          <ion-input disabled [(ngModel)]="uraianpekerjaan"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Email
+      </ion-label>
+      <ion-input [(ngModel)]="email" placeholder="xxx@xxx.xxx"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor HP
+      </ion-label>
+      <ion-input [(ngModel)]="nohp" placeholder="c/o:+628129117474"></ion-input>
+    </ion-item>
+    <ion-row style="padding:0px;">
+      <ion-col col-6 style="padding:0px;" (click)="doShowListStatusNikah()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Status Pernikahan
+          </ion-label>
+          <ion-input disabled [(ngModel)]="statuspernikahan"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 style="padding:0px;" (click)="doShowListKewarganegaraan()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Kewarganegaraan
+          </ion-label>
+          <ion-input disabled [(ngModel)]="kewarganegaraan"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-item style="padding:0px;" (click)="doShowPendidikan()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Pendidikan Formal Terakhir
+      </ion-label>
+      <ion-input disabled [(ngModel)]="pendidikan"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowHobi()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Hobi Berisiko Tinggi
+      </ion-label>
+      <ion-input disabled [(ngModel)]="resikohobi"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="resikohobi == 'Tidak'" [(ngModel)]="hobi" placeholder="Jika Ya, harap disebutkan">
+      </ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Alamat Domisili
+      </ion-label>
+      <ion-input [(ngModel)]="alamat1"
+        placeholder="Alamat 1 * (Jika Anda mengisi Alamat Domisili, Alamat 1 wajib diisi)"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [(ngModel)]="alamat2" placeholder="Alamat 2"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [(ngModel)]="rtrw" placeholder="RT/RW"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [(ngModel)]="kelurahan" placeholder="Kelurahan/Desa"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kota
+      </ion-label>
+      <ion-input [(ngModel)]="kotaalamat"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kode POS
+      </ion-label>
+      <ion-input [(ngModel)]="kodepos"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowAlamatNegara()">
+      <ion-label stacked></ion-label>
+      <ion-input disabled [(ngModel)]="alamatnegara" placeholder="Negara"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor Telepon
+      </ion-label>
+      <ion-input [(ngModel)]="telpalamat" placeholder="c/o +6221255888"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor Fax
+      </ion-label>
+      <ion-input [(ngModel)]="faxalamat" placeholder="c/o +6221255888"></ion-input>
+    </ion-item>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">Alamat Korespondensi (Lengkapi, bila berbeda dengan Alamat Domisili)</p>
+    <ion-row style="padding:0px;">
+      <ion-col col-6 style="padding:0px;" (click)="doAlamatBerbeda()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Alamat berbeda?
+          </ion-label>
+          <ion-input disabled [(ngModel)]="alamatkorespondensi"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6 style="padding:0px;" (click)="doTipeAlamat()">
+        <ion-item style="padding:0px;">
+          <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+            Tipe Alamat
+          </ion-label>
+          <ion-input disabled [(ngModel)]="tipealamatkorespondensi"></ion-input>
+          <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+            <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;"
+              item-end></i>
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="alamat1korespondensi"
+        placeholder="Alamat 1 (wajib diisi)"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="alamat2korespondensi" placeholder="Alamat 2">
+      </ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="rtrwkorespondensi" placeholder="RT/RW">
+      </ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="kelurahankorespondensi"
+        placeholder="Kelurahan/Desa"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kota
+      </ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="kotakorespondensi"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kode POS
+      </ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="kodeposkorespondensi"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowAlamatKorespondensiNegara()">
+      <ion-label stacked></ion-label>
+      <ion-input disabled [(ngModel)]="alamatnegarakorespondensi" placeholder="Negara"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor Telepon
+      </ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="telpalamatkorespondensi"
+        placeholder="c/o +6221255888"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor Fax
+      </ion-label>
+      <ion-input [disabled]="alamatkorespondensi == 'Tidak'" [(ngModel)]="faxalamatkorespondensi"
+        placeholder="c/o +6221255888"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        NPWP (Nomor Pokok Wajib Pajak)
+      </ion-label>
+      <ion-input [(ngModel)]="npwpkorespondensi"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowNPWPAsing()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Wajib Pajak Negara Asing (Lengkapi, bila jawaban ya)
+      </ion-label>
+      <ion-input disabled [(ngModel)]="npwpasing"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowNegaraNPWP()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Negara / Jurisdiksi
+      </ion-label>
+      <ion-input disabled [(ngModel)]="negaranpwpasing" placeholder="Pilih Negara"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Tax Identification Number(TIN)
+      </ion-label>
+      <ion-input [disabled]="npwpasing.length == 0" [(ngModel)]="tin"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="tin.length != 0 || npwpasing == 'Tidak'" [(ngModel)]="notetin"
+        placeholder="Mohon penjelasan apabila Anda tidak dapat menginformasikan TIN">
+      </ion-input>
+      <button [disabled]="negaranpwpasing == ''" ion-button clear item-end style="height:50px;padding:0px;z-index:999;"
+        (click)="doAddTin()">
+        <i class="fas fa-plus-square" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-row *ngIf="clientforeigntax.length != 0" style="background: #1EC1FF;">
+      <ion-col col-4 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Negara</ion-col>
+      <ion-col col-3 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Tax Identification
+        Number(TIN)</ion-col>
+      <ion-col col-4 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Remark</ion-col>
+      <ion-col col-1 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Opsi</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let foreigntax of clientforeigntax">
+      <ion-col col-4>{{foreigntax.code_desc1}}</ion-col>
+      <ion-col col-3>{{foreigntax.foreign_tax_tin}}</ion-col>
+      <ion-col col-4>{{foreigntax.foreign_tax_tin_remark}}</ion-col>
+      <ion-col col-1 (click)="doDeleteTin(foreigntax)">
+        <ion-icon name="trash"></ion-icon>&nbsp;Hapus
+      </ion-col>
+    </ion-row>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">Jika Anda merupakan Wajib Pajak di Amerika Serikat, maka :</p>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">- Gunakan Formulir W8BEN apabila anda bukan Warga Negara Amerika Serikat ataupun bukan pemegang
+      Green Card
+      Amerika Serikat.</p>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">- Gunakan Formulir W9 apabila Anda Warga Negara Amerika Serikat atau Warga Negara dari daerah
+      teritori di Amerika
+      Serikat ataupun pemegang Green Card Amerika Serikat termasuk apabila Anda merupakan pemilik visa kerja yang
+      berlaku di Amerika Serikat.</p>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">- Untuk mengunduh Formulir W8BEN dan W9, Anda dapat mengakses di website
+      https://www.irs.gov/businesses/corporations/fatca-related-forms</p>
+    <ion-item style="padding:0px;" (click)="doSumberPenghasilan()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Sumber Penghasilan
+      </ion-label>
+      <ion-input disabled [(ngModel)]="penghasilan"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [disabled]="penghasilan.length == ''" [(ngModel)]="notepenghasilan"
+        placeholder="Untuk Tabungan/Deposit atau Lain Lain, harap dijelaskan">
+      </ion-input>
+      <button [disabled]="penghasilan.length == ''" ion-button clear item-end
+        style="height:50px;padding:0px;z-index:999;" (click)="doAddPenghasilan()">
+        <i class="fas fa-plus-square" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-row *ngIf="clientincome.length != 0" style="background: #1EC1FF;">
+      <ion-col col-6 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Sumber Penghasilan
+      </ion-col>
+      <ion-col col-5 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Keterangan</ion-col>
+      <ion-col col-1 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Opsi</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let income of clientincome">
+      <ion-col col-6>{{income.code_desc1}}</ion-col>
+      <ion-col col-5>{{income.salary_remark}}</ion-col>
+      <ion-col col-1 (click)="doDeletePenghasilan(income)">
+        <ion-icon name="trash"></ion-icon>&nbsp;Hapus
+      </ion-col>
+    </ion-row>
+    <ion-item style="padding:0px;" (click)="doShowPerkiraanKotor()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Perkiraan Penghasilan Kotor per Tahun
+      </ion-label>
+      <ion-input disabled [(ngModel)]="penghasilankotor"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doTujuanPembelian()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Tujuan membeli Asuransi
+      </ion-label>
+      <ion-input disabled [(ngModel)]="tujuanpembelian" placeholder="Tujuan Pembelian"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label stacked></ion-label>
+      <ion-input [(ngModel)]="notepembelian" placeholder="Untuk Tujuan Usaha / Lain Lain. harap dijelaskan">
+      </ion-input>
+      <button [disabled]="tujuanpembelian.length == ''" ion-button clear item-end
+        style="height:50px;padding:0px;z-index:999;" (click)="doAddPembelianAsuransi()">
+        <i class="fas fa-plus-square" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-row *ngIf="clientpurpose.length != 0" style="background: #1EC1FF;">
+      <ion-col col-6 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Tujuan Membeli
+        Asuransi
+      </ion-col>
+      <ion-col col-5 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Keterangan</ion-col>
+      <ion-col col-1 style="background: #1EC1FF;color:#000;border:0.5px solid;border-color:#fff;">Opsi</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let purpose of clientpurpose">
+      <ion-col col-6>{{purpose.code_desc2}}</ion-col>
+      <ion-col col-5>{{purpose.purpose_remark}}</ion-col>
+      <ion-col col-1 (click)="doDeletePembelianAsuransi(purpose)">
+        <ion-icon name="trash"></ion-icon>&nbsp;Hapus
+      </ion-col>
+    </ion-row>
+    <p style="font-size: 10px;
+    color: #626b79;
+    font-weight: bold;">Data Rekening pada Bank</p>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nama Pemilik Rekening
+      </ion-label>
+      <ion-input [(ngModel)]="namarekening"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;" (click)="doShowMataUang()">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Mata Uang Rekening
+      </ion-label>
+      <ion-input disabled [(ngModel)]="matauangrekening"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nomor Rekening
+      </ion-label>
+      <ion-input [(ngModel)]="norekening"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Nama Bank
+      </ion-label>
+      <ion-input [(ngModel)]="namabank"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Cabang
+      </ion-label>
+      <ion-input [(ngModel)]="cabangbank"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Kota
+      </ion-label>
+      <ion-input [(ngModel)]="kotabank"></ion-input>
+    </ion-item>
+    <ion-item style="padding:0px;">
+      <ion-label style="font-size:10px;color:#626b79;font-weight: bold;" stacked>
+        Catatan
+      </ion-label>
+      <ion-textarea [(ngModel)]="catatan" placeholder="(Maks. Catatan 500 karakter)"></ion-textarea>
+    </ion-item>
+  </ion-content>
+</div>
+
+<div class="overlay" id="overlay" *ngIf="overlay == true">
+  <div class="confirm" padding>
+    <ion-row>
+      <ion-col col-12 style="font-size:18px;font-weight: bold;">KONFIRMASI HAPUS PROSPEK</ion-col>
+      <ion-col col-12>Apakah Anda yakin akan menghapus Prospek:</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="font-size:14px;font-weight: bold;border-bottom:1px solid;border-color:#dedede;">Detail
+        Prospek</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Nama Prospek</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientname}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Jenis Kelamin</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientgender}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Tanggal Lahir</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientbirthdate}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Kelas Pekerjaan</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientclass}}</ion-col>
+    </ion-row>
+    <ion-buttons style="padding-top:10px;">
+      <div
+        style="width:100%;border-radius:4px;background: #f7f7f7;color:#092e61;padding:15px;text-align: center;margin-bottom:10px;"
+        (click)="doOffOverlay()">BATAL</div>
+      <div style="width:100%;border-radius:4px;background: #0076c5;color:#fff;padding:15px;text-align: center;"
+        (click)="doDeleteClient()">HAPUS</div>
+    </ion-buttons>
+  </div>
+</div>
+
+<div class="overlay" id="overlaygroup" *ngIf="overlaygroup == true">
+  <div class="confirm" padding>
+    <ion-row>
+      <ion-col col-12 style="font-size:18px;font-weight: bold;">KONFIRMASI HAPUS GRUP</ion-col>
+      <ion-col col-12>Apakah Anda yakin akan menghapus Prospek ini dari Grup:</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="font-size:14px;font-weight: bold;border-bottom:1px solid;border-color:#dedede;">Detail
+        Prospek</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Nama Prospek</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientnamegrupselect}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Jenis Kelamin</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientgendergrupselect}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Tanggal Lahir</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientbirthdategrupselect}}</ion-col>
+      <ion-col col-5 style="text-align: left;font-size: 12px;">Kelas Pekerjaan</ion-col>
+      <ion-col col-0.5 style="text-align: right;font-size: 12px;">:</ion-col>
+      <ion-col col-6 style="text-align: left;font-size: 12px;">{{clientclassgrupselect}}</ion-col>
+    </ion-row>
+    <ion-buttons style="padding-top:10px;">
+      <div
+        style="width:100%;border-radius:4px;background: #f7f7f7;color:#092e61;padding:15px;text-align: center;margin-bottom:10px;"
+        (click)="doOffConfirmDeleteGroup()">BATAL</div>
+      <div style="width:100%;border-radius:4px;background: #0076c5;color:#fff;padding:15px;text-align: center;"
+        (click)="doDeleteGrup()">HAPUS</div>
+    </ion-buttons>
+  </div>
+</div>
+
+<div class="overlay" id="overlaygroup" *ngIf="overlayoption == true">
+  <div class="confirm" padding>
+    <ion-row>
+      <ion-col col-12 style="font-size:18px;font-weight: bold;">{{titleoption}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 style="font-size:14px;font-weight: bold;border-bottom:1px solid;border-color:#dedede;">List
+        Options</ion-col>
+    </ion-row>
+    <ion-content style="height:150px;">
+      <ion-item text-wrap style="padding:0px;" *ngFor="let option of listoptions" (click)="doSelectOption(option)">
+        <div>
+          {{option.code_desc1}}
+        </div>
+        <p>
+          {{option.description}}
+        </p>
+        <ion-note>
+          {{option.note}}
+        </ion-note>
+        <button ion-button clear item-end>
+          <ion-icon style="font-size:20px;font-weight: bold;" name="checkmark"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-content>
+    <ion-buttons style="padding-top:10px;">
+      <div
+        style="width:100%;border-radius:4px;background: #f7f7f7;color:#092e61;padding:15px;text-align: center;margin-bottom:10px;"
+        (click)="doOffOverlayOption()">BATAL</div>
+    </ion-buttons>
+  </div>
+</div>
+
+<div id="myModalSearch" class="modal-items">
+  <ion-content class="modal-content-items">
+    <ion-item text-wrap style="padding:0px;">
+      <label item-start class="container" style="z-index:999;">
+        <input #checkbox type="checkbox" name="searchbyname" (click)="doCheckSearchName()">
+        <span class="checkmark"></span>
+      </label>
+      <ion-label style="font-size:15px;color:#000;" stacked>
+        Nama
+      </ion-label>
+      <ion-input type="text" [(ngModel)]="namasearch" placeholder="Search By Name"></ion-input>
+    </ion-item>
+    <ion-item text-wrap style="padding:0px;">
+      <label item-start class="container" style="z-index:999;">
+        <input #checkbox type="checkbox" name="searchbydatebirth" (click)="doCheckSearchDateBirth()">
+        <span class="checkmark"></span>
+      </label>
+      <ion-label style="font-size:15px;color:#000;" stacked>
+        Tanggal Lahir
+      </ion-label>
+      <ion-input disabled type="text" [(ngModel)]="tgllahirsearch" placeholder="Search By Date Birth" (click)="doDatePickerSearch()"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;" (click)="doDatePickerSearch()">
+        <i class="fas fa-calendar-alt" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+    <ion-item text-wrap style="padding:0px;">
+      <label item-start class="container" style="z-index:999;">
+        <input #checkbox type="checkbox" name="searchbygender" (click)="doCheckSearchGender()">
+        <span class="checkmark"></span>
+      </label>
+      <ion-label style="font-size:15px;color:#000;" stacked>
+        Jenis Kelamin
+      </ion-label>
+      <ion-input disabled [(ngModel)]="jkelsearch" placeholder="Search By Gender" (click)="doShowOptionJkelSearch()"></ion-input>
+      <button ion-button clear item-end style="height:50px;padding:0px;z-index:999;" (click)="doShowOptionJkelSearch()">
+        <i class="fas fa-angle-down" style="font-size:18px;color:#626b79;padding-top:25px;margin:auto;" item-end></i>
+      </button>
+    </ion-item>
+  </ion-content>
+</div>

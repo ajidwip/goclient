@@ -1,3 +1,167 @@
 page-home {
+    ion-navbar.toolbar {
+        max-height: 35px!important;
+      }
+    //on Android
+    ion-navbar.toolbar-md {
+        max-height: 35px!important;
+      }
+    //on iOS
+    ion-navbar.toolbar.toolbar-ios {
+        max-height: 35px!important;
+      }
+      .toolbar-md {
+        min-height: 35px;
+    }
+    input[type="text"][disabled] {
+      opacity: 1;
+   }
+   button[ion-fab] {
+    overflow: visible;
+    position: relative;
 
+    ion-label {
+        position: absolute;
+        top: 0px;
+        right: 60px;
+        color: white;
+        background-color: rgba(0,0,0,0.7);
+        line-height: 24px;
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+    contain: layout;
+}
+.modal-items {
+    display: none; /* Hidden by default */
+    position: absolute; /* Stay in place */
+    z-index: 888; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #fefefe;
+    padding-top:130px;
+    padding-left:10px;
+    padding-right:10px;
+}
+
+/* Modal Content/Box */
+.modal-content-items {
+  .scroll-content {
+    margin-top: 0% !important;
+  }
+    background-color: #fefefe;
+    width: 100%; /* Could be more or less, depending on screen size */
+    height: 100%;
+}
+.col-content {
+    border-bottom:1px solid;
+    border-color:#dedede;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  .overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+    cursor: pointer;
+  }
+  
+  .confirm{
+    border-radius: 5px;
+    position: absolute;
+    width: 50%;
+    top:50%;
+    left: 50%;
+    font-size: 15px;
+    background: #fff;
+    color: #000;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    z-index: 999;
+  }
+  .item-md [item-left], .item-md [item-right], .item-md [item-start], .item-md [item-end] {
+    margin-bottom: 25px;
+    padding-right: 10px;
+}
+}
+ion-toast.success .toast-wrapper {
+  background: green;
+}
+
+ion-toast.error .toast-wrapper {
+  background: red;
 }

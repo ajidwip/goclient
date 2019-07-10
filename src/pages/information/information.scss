@@ -1,0 +1,16 @@
+page-information {
+    ion-navbar.toolbar {
+        max-height: 35px!important;
+      }
+    //on Android
+    ion-navbar.toolbar-md {
+        max-height: 35px!important;
+      }
+    //on iOS
+    ion-navbar.toolbar.toolbar-ios {
+        max-height: 35px!important;
+      }
+      .toolbar-md {
+        min-height: 35px;
+    }
+}

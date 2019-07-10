@@ -1,0 +1,27 @@
+page-clientdetail {
+    ion-toolbar.toolbar {
+        max-height: 35px!important;
+      }
+    //on Android
+    ion-toolbar.toolbar-md {
+        max-height: 35px!important;
+      }
+    //on iOS
+    ion-toolbar.toolbar.toolbar-ios {
+        max-height: 35px!important;
+      }
+      .toolbar-md {
+        min-height: 35px;
+    }
+    input[type="text"][disabled] {
+      opacity: 1;
+   }
+   .modal-content-items {
+    .scroll-content {
+      margin-top: 0% !important;
+    }
+      background-color: #fefefe;
+      width: 100%; /* Could be more or less, depending on screen size */
+      height: 100%;
+  }
+}
